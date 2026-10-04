@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}Todos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            Your Todo's!
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                List of your todo's!
+            </h5>
+            <p class="card-text">
+                Information regarding stuff that needs to be complete
+            </p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Info</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for todo in todos %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>
+                            <strong>{{ todo.title }}</strong><br>
+                            {{ todo.description }}<br>
+                            <small>Priority: {{ todo.priority }}</small>
+                        </td>
+                        <td>
+                            <a href="/todos/edit-todo-page/{{ todo.id }}" class="btn btn-primary">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="/todos/add-todo-page" class="btn btn-primary">Add a new todo!</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
